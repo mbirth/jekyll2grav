@@ -10,7 +10,7 @@ import re
 SRCDIR="jekyll"
 GRAVDIR="grav/user/pages"
 
-GRAV_TYPE="blog_item"
+GRAV_TYPE="item"
 
 # Translates Jekyll top level folders to GRAV (sorted)
 FIRST_LEVEL = {
@@ -25,6 +25,7 @@ DATEFORMAT_OUT="%Y-%m-%d %H:%M:%S"
 
 LOCAL_TIMEZONE=pytz.timezone("Europe/Berlin")
 
+# Jekyll-tags that are considered to be categories, not tags
 CATEGORIES=["know-how", "development", "review", "hacking", "hardware", "software", "miscellaneous"]
 
 def convert_file(filepath):
