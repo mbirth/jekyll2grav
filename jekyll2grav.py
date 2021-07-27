@@ -6,11 +6,17 @@ import os
 import frontmatter
 import pytz
 import re
+import yaml
 
-SRCDIR="jekyll"
-GRAVDIR="grav/user/pages"
+with open("config.yaml", "rt") as f:
+    config = yaml.load(f)
 
-GRAV_TYPE="item"
+print(repr(config))
+
+SRCDIR=config["general"]["jekyll_dir"]
+GRAVDIR=config["general"]["grav_dir"]
+
+GRAV_TYPE = config["grav_defaults"]["item_type"]
 
 # Translates Jekyll top level folders to GRAV (sorted)
 FIRST_LEVEL = {
@@ -23,7 +29,7 @@ FIRST_LEVEL = {
 DATEFORMAT_IN="%Y-%m-%d %H:%M:%S %z"
 DATEFORMAT_OUT="%Y-%m-%d %H:%M:%S"
 
-LOCAL_TIMEZONE=pytz.timezone("Europe/Berlin")
+LOCAL_TIMEZONE=pytz.timezone(config["general"]["timezone"])
 
 # Jekyll-tags that are considered to be categories, not tags
 CATEGORIES=["know-how", "development", "review", "hacking", "hardware", "software", "miscellaneous"]
@@ -46,8 +52,8 @@ def convert_file(filepath):
 
 
     post["taxonomy"] = {
-        "category": ["wiki"],
-        "tag": []
+        "category": config["grav_defaults"]["categories"],
+        "tag": config["grav_defaults"]["tags"],
     }
 
     for t in post["tags"]:

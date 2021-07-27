@@ -1,0 +1,49 @@
+general:
+  jekyll_dir: jekyll
+  grav_dir: grav/user/pages
+
+  # Timezone for stamps without one
+  timezone: Europe/Berlin
+
+# Special mapping from Jekyll top-level directories to
+# GRAV top-level dirs. E.g. to add sorting.
+jekyll2grav_directories:
+  know-how: 03.know-how
+  misc: 04.misc
+  reviews: 05.reviews
+  software: 06.software
+
+grav_defaults:
+  # GRAV document type for Jekyll posts
+  item_type: item
+  # Default language if not specified in Jekyll document
+  language: en
+  # Default frontmatter data for ALL converted items
+  frontmatter:
+    visible: true
+  # Default categories/tags for ALL converted items
+  categories: [wiki]
+  tags: []
+
+# As Jekyll only knows tags, specify which tags are to be
+# considered GRAV categories. Tags not mentioned here will
+# be kept as tags
+grav_categories:
+  - know-how
+  - development
+  - review
+  - hacking
+  - hardware
+  - software
+  - miscellaneous
+
+# Create a map of old URL > new URL to e.g. migrate Disqus comments
+url_map:
+  enabled: true
+  jekyll_base_url: https://wiki.mbirth.de/
+  grav_base_url: https://wiki.mbirth.de/
+  # If "Include default language" is enabled in GRAV's System settings,
+  # we need to generate URLs with it, too.
+  grav_include_default_language: true
+  # Separator between old and new URLs. Disqus uses ", " (CSV)
+  list_separator: ", "
