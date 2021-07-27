@@ -94,6 +94,7 @@ def convert_file(filepath):
     print("Writing {}...".format(newfilepath))
     frontmatter.dump(post, newfilepath)
 
+num_converted = 0
 for root, dirs, files in os.walk(SRCDIR):
     if root.split("/")[-1] in ["assets", "css", "images", "fonts", "javascripts", "_includes", "_layouts", SRCDIR]:
         continue
@@ -102,3 +103,7 @@ for root, dirs, files in os.walk(SRCDIR):
             continue
         filepath = "{}/{}".format(root, f)
         convert_file(filepath)
+        num_converted += 1
+
+print("Converted {} files.".format(num_converted))
+
